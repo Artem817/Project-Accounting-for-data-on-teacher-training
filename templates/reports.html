@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Звіти викладачів</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="/static/reports_style.css" rel="stylesheet" />
+    <style>
+        .bold {
+            font-weight: bold;
+            color: blue; 
+        }
+    </style>
+    <script>
+        $(function() {
+            $(".main-input").autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "/autocomplete",
+                        dataType: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 2 // мінімальна довжина введення перед запитом
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="centerbox">
+        <div class="main-form-container">
+           <form id="search-form" method="POST" action="/search-form">
+                <input type="text" id="search-input" name="search-input" class="main-input main-name" placeholder="Введіть ПІБ викладача" onfocus="clearText(this)" onblur="replaceText(this)" />
+                <input id="main-submit" class="" type="submit" value="Search" />
+           </form>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Імя викладача</th>
+                    <th>Ects кредити</th>
+                    <th>Звіт</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data %}
+                <tr>
+                    <td>{{ data[0][0] }}</td>
+                    <td>{{ data[0][6] }}</td>
+                    <td><a href="{{ url_for('download_report') }}">Завантажити звіт</a></td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

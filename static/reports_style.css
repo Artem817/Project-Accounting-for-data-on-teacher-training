@@ -1,0 +1,90 @@
+body {
+    font-family: 'Segoe UI Variable Text', sans-serif;
+}
+
+.table-container {
+    max-width: 800px;
+    margin: 30px auto;
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    overflow: auto; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+th {
+    background-color: #1c05b3;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.main-form-container {
+    position: relative;
+    margin: 20px auto; 
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-input {
+    background: #fff;
+    height: 50px;
+    width: 327px;
+    color: #000000;
+    border: 1px solid #cccccc;
+    margin-bottom: 0px;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 57px;
+    background: #ffffff url("/static/images/magnifying\ glass.png ") 18px 15px no-repeat;
+    background-size: 20px 20px;
+}
+
+#main-submit {
+    background: #1c05b3;
+    color: #fff;
+    display: inline-block;
+    font-size: 19px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 0px;
+    border-radius: 0px 4px 4px 0px;
+    width: 141px;
+    height: 50px;
+    border: 0px;
+    padding-top: 0px;
+}
+
+#main-submit:hover {
+    background: #3E8EDE;
+}
+
+@media only screen and (max-width: 680px) {
+    .main-form-container {
+        width: 100%;
+    }
+
+    .main-input {
+        width: calc(100% - 141px);
+    }
+}
